@@ -1,0 +1,99 @@
+﻿@using SchedulerManagementSystem.Models;
+@using System.Globalization;
+@using SchedulerManagementSystem.Models.Scheduler;
+@model Response<DashboardViewModel>
+
+<table id="tblEmployeeSchedulerCalendar" class="table table-responsive table-bordered table-hover align-middle">
+    <thead>
+        <tr>
+            <th data-sticky-header-col="1" scope="col"></th>
+            <th data-sticky-header-col="1" scope="col" class="fw-bold">Employee Name</th>
+            <th data-sticky-header-col="1" scope="col" class="fw-bold">Employee Grade</th>
+            <th data-sticky-header-col="1" scope="col" class="fw-bold">Employee Location</th>
+            <th data-sticky-header-col="1" scope="col" class="fw-bold">Total Work Hours</th>
+            @if (Model != null && Model.IsSuccess
+            && Model.Data.EmployeeSchedulerVMList != null && Model.Data.EmployeeSchedulerVMList.Any())
+            {
+                var empSchedulerInfo = Model.Data.EmployeeSchedulerVMList.First().EmployeeSchedulerInfoList;
+                @if (empSchedulerInfo != null && empSchedulerInfo.Any())
+                {
+                    var empSchInfo = empSchedulerInfo;
+                    @foreach (var sch in empSchInfo)
+                    {
+                        <th scope="col" class="fw-bold text-center">
+                            @sch.WorkScheduledDate.ToString("ddd",CultureInfo.CreateSpecificCulture("en-US"))
+                            <br />
+                            @sch.WorkScheduledDate.ToString("d",CultureInfo.CreateSpecificCulture("en-US"))
+                            @* @sch.WorkScheduledDate.ToString("MM",CultureInfo.CreateSpecificCulture("en-US"))
+                            -
+                            @sch.WorkScheduledDate.ToString("dd",CultureInfo.CreateSpecificCulture("en-US")) *@
+                        </th>
+                    }
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.IsSuccess && Model.Data != null
+        && Model.Data.EmployeeSchedulerVMList != null && Model.Data.EmployeeSchedulerVMList.Any())
+        {
+            @foreach (var employee in Model.Data.EmployeeSchedulerVMList)
+            {
+                if (employee != null)
+                {
+                    <tr>
+                        <td scope="row">
+                            <button class="btn" onclick="getReplaceEmployeeCalendarList('@employee.Id')">
+                                <span class="material-icons text-info pk-fs-15" role="button" title="Replace">sync</span>
+                            </button>
+                            <button class="btn" onclick="removeEmployeeFromCalendar('@employee.Id')">
+                                <span class="material-icons text-danger pk-fs-15" role="button" title="Remove">delete</span>
+                            </button>
+                        </td>
+                        <td scope="row">
+                            @if (!string.IsNullOrWhiteSpace(employee.Name))
+                            {
+                                <p>@employee.Name</p>
+                            }
+                        </td>
+                        <td scope="row">
+                            @if (employee.GradeInfo != null && !string.IsNullOrWhiteSpace(employee.GradeInfo.Name))
+                            {
+                                <p>@employee.GradeInfo.Name</p>
+                            }
+                        </td>
+                        <td scope="row">
+                            @if (employee.LocationInfo != null && !string.IsNullOrWhiteSpace(employee.LocationInfo.Name))
+                            {
+                                <p>@employee.LocationInfo.Name</p>
+                            }
+                        </td>
+                        <td scope="row">
+                            <p>@employee.TotalHours</p>
+                        </td>
+
+                        @if (employee.EmployeeSchedulerInfoList != null)
+                        {
+                            @foreach (var sch in employee.EmployeeSchedulerInfoList)
+                            {
+                                <td scope="row">
+                                    <div class="container align-items-center">
+                                        <p>@sch.AvailableHours</p>
+                                        <input class="pk-cart-number-input empSchAllocationHourInput"
+                                               onchange="updateAllocationWorkingHour(event, '@sch.Id')"
+                                               type="number"
+                                        @(sch.WorkScheduledDate < DateTime.Now.Date ? "disabled" : "")
+                                               min="0" value="@sch.AllocatedHours" max="@sch.AvailableHours"
+                                               data-curr-val="@sch.AllocatedHours"
+                                               data-employee-scheduler-id="@sch.Id"
+                                               style="text-align:center;" />
+                                    </div>
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

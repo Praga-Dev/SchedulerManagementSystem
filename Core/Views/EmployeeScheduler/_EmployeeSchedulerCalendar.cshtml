@@ -1,0 +1,149 @@
+﻿@using SchedulerManagementSystem.Models;
+@using System.Globalization;
+@using SchedulerManagementSystem.Models.Scheduler;
+@model Response<DashboardViewModel>
+
+<style>
+    p,
+    span,
+    /* div, */
+    th,
+    td,
+    button{
+        font-size: 10px !important;
+    }
+
+    .material-icons {
+        vertical-align: middle;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-header pk-card-header">
+                    <h6 class="card-title">Audit Information</h6>
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-left">
+                        <span class="fw-bolder">Audit Status :</span> Pre-Planning <br>
+                        <span class="fw-bolder">Audit Id :</span> 1231.09 <br>
+                        <span class="fw-bolder">Audit Name :</span> Lorem epsium <br>
+                        <span class="fw-bolder">Org Level2 :</span> Lorem epsium <br>
+                        <span class="fw-bolder">Org Level3 :</span> Lorem epsium <br>
+                        <span class="fw-bolder">Managing Director :</span> Lorem epsium <br>
+                        <span class="fw-bolder">Director :</span> Lorem epsium <br>
+                        <span class="fw-bolder">Audit Expected Start Date :</span>
+                        <input type="date"> <br>
+                        <span class="fw-bolder">Audit Expected End Date :</span> 01/01/2000 <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                        <div class="card-header pk-card-header">
+                            <h6 class="card-title">Parent / Child Audit List</h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered" style="display:table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Audit</th>
+                                        <th scope="col">Budgeted Hours</th>
+                                        <th scope="col">Remaining Budget</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            icon
+                                        </th>
+                                        <td>1231.09</td>
+                                        <td>710</td>
+                                        <td>710</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mb-3 mb-sm-0">
+                    <div class="card">
+                        <div class="card-header pk-card-header">
+                            <h6 class="card-title">Allocation % by Grade</h6>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered" style="display:table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Grades</th>
+                                        <th scope="col">Budgeted %</th>
+                                        <th scope="col">Remaining %</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1231.09</td>
+                                        <td>710</td>
+                                        <td>710</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 1rem; max-height: 300px;">
+        <div class="row">
+            <div class="card" style="padding: 0;">
+                <div class="card-header pk-card-header">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-primary-outline" onclick="getManageCalendarEmployeeList()">
+                                    <span>Manage &nbsp;</span><i class="material-icons">manage_accounts</i>
+                                </button>
+                            </div>
+                            <div class="col-sm-6">
+                                @if (Model != null && Model.IsSuccess && Model.Data != null)
+                                {
+
+                                    <div id="calendarSwitchBtnGroup" class="btn-group" role="group" 
+                                        data-start-date="@Model.Data.StartDate.ToString("d")"
+                                        data-end-date="@Model.Data.EndDate.ToString("d")">
+                                        <button type="button" class="btn btn-primary-outline" onclick="getPrevious3MonthsOnCalendar()">
+                                            Prev
+                                        </button>
+                                        <button type="button" class="btn btn-primary-outline">
+                                            @Model.Data.StartDate.ToString("d") - @Model.Data.EndDate.ToString("d")
+                                        </button>
+                                        <button type="button" class="btn btn-primary-outline" onclick="getNext3MonthsOnCalendar()">
+                                            Next
+                                        </button>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="employeeSchedulerCalendarContainer">
+                        <partial name="_EmployeeSchedulerCalendarTable.cshtml" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/employee-scheduler/employee-scheduler-validation.js" asp-append-version="true"></script>

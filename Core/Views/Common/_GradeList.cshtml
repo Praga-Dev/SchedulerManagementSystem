@@ -1,0 +1,17 @@
+﻿@model Response<List<GradeInfo>>
+
+<div class="form-group">
+    <label class="form-label">
+        Grade
+        <span class="required">*</span>
+    </label>
+    <select id="selectGrade" name="grade" class="form-control form-control-sm">
+        @if (Model != null && Model.Data != null && Model.Data.Any())
+        {
+            @foreach (var grade in Model.Data)
+            {
+                <option value="@grade.Id">@grade.Name</option>
+            }
+        }
+    </select>
+</div>

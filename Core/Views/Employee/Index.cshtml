@@ -1,0 +1,42 @@
+﻿@model Response<List<EmployeeInfo>>
+
+@{
+    ViewData["Title"] = "Employee";
+}
+
+<div class="pk-table-container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Employee</h2>
+            </div>
+            <div class="col-sm-6">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary-outline" onclick="onCreateEmployee()">
+                    <span>Create &nbsp;</span><i class="material-icons">&#xE147;</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="employeeListContainer" class="pk-emp-tbl-wrapper">
+        <div class="pk-emp-tbl-container">
+
+            @if (Model != null && Model.IsSuccess && Model.Data != null && Model.Data.Any())
+            {
+                <partial name="_EmployeeList.cshtml" />
+            }
+            else
+            {
+                <p>
+                    NO RECORDS FOUND
+                </p>
+            }
+        </div>
+    </div>
+</div>
+
+<div id="createEmployeeFormContainer">
+    <partial name="_CreateEmployee.cshtml" model="new EmployeeInfo()" />
+</div>
+
+<script src="~/js/employee/employee.js" asp-append-version="true"></script>

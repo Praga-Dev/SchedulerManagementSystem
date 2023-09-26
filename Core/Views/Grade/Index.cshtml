@@ -1,0 +1,38 @@
+﻿@model Response<List<GradeInfo>>
+
+@{
+    ViewData["Title"] = "Grade";
+}
+
+<div class="pk-table-container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Grade</h2>
+            </div>
+            <div class="col-sm-6">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary-outline" onclick="onCreateGrade()">
+                    <span>Create &nbsp;</span><i class="material-icons">&#xE147;</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="gradeListContainer">
+        @if (Model != null && Model.IsSuccess && Model.Data != null && Model.Data.Any())
+        {
+            <partial name="_GradeList.cshtml" />
+        }
+        else
+        {
+            <p>
+                NO RECORDS FOUND
+            </p>
+        }
+    </div>
+</div>
+<div id="createGradeFormContainer">
+    <partial name="_CreateGrade.cshtml" model="new GradeInfo()" />
+</div>
+
+<script src="~/js/grade/grade.js" asp-append-version="true"></script>
