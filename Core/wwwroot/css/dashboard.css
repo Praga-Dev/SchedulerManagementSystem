@@ -1,7 +1,36 @@
 ﻿p,
 span,
-div,
+/* div, */
 th,
-td {
-    font-size: 10px;
+td,
+button {
+    font-size: 10px !important;
 }
+
+.material-icons {
+    vertical-align: middle;
+}
+
+/*.progresses {
+    display: flex;
+    align-items: center;
+}
+
+.line {
+    width: 580px;
+    height: 6px;
+    background: darkslateblue;
+}
+
+
+.steps {
+    display: flex;
+    background-color: darkslateblue;
+    color: #fff;
+    font-size: 14px;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}*/
