@@ -1,4 +1,4 @@
-﻿using SchedulerManagementSystem.DataModels;
+﻿using SchedulerManagementSystem.DataModels.Employee;
 using SchedulerManagementSystem.Models;
 using System.Collections.Generic;
 using System.Diagnostics;

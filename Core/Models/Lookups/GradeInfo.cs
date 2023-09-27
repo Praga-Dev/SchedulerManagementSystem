@@ -1,9 +1,8 @@
-﻿namespace SchedulerManagementSystem.Models
+﻿namespace SchedulerManagementSystem.Models.Lookups
 {
-    public class LocationInfo
+    public class GradeInfo
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-
     }
 }

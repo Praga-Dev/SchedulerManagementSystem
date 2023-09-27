@@ -1,9 +1,8 @@
-﻿namespace SchedulerManagementSystem.DataModels
+﻿namespace SchedulerManagementSystem.DataModels.Lookups
 {
-    public class GradeInfoDB
+    public class HireTypeInfoDB
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-
     }
 }
