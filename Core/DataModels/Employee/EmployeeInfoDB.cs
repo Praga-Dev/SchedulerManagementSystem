@@ -5,15 +5,14 @@ namespace SchedulerManagementSystem.DataModels.Employee
     public class EmployeeInfoDB
     {
         public Guid Id { get; set; }
+        
         public string Name { get; set; }
+
 
         #region Employee Information IAD
 
-        [Required]
         public string FirstName { get; set; }
-        public string MiddleInitial { get; set; }
-
-        [Required]
+        public string MiddleName { get; set; }
         public string LastName { get; set; }
 
         public Guid DepartmentId { get; set; }
@@ -25,8 +24,8 @@ namespace SchedulerManagementSystem.DataModels.Employee
         public Guid LocationId { get; set; }
         public string LocationName { get; set; }
 
-        // TODO Need type 
-        public string ChargeCode { get; set; }
+        //// TODO Need type 
+        //public string ChargeCode { get; set; }
         
         public Guid TitleId { get; set; }
         public string Title { get; set; }
@@ -94,8 +93,12 @@ namespace SchedulerManagementSystem.DataModels.Employee
 
         #endregion
 
+        #region Custom Fields
+
         public Guid GradeId { get; set; }
         public string GradeName { get; set; }
         public int TotalHours { get; set; }
+
+        #endregion
     }
 }
