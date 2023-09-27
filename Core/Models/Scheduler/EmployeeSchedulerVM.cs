@@ -1,4 +1,4 @@
-﻿using SchedulerManagementSystem.Models;
+﻿using SchedulerManagementSystem.Models.Lookups;
 
 namespace SchedulerManagementSystem.Models.Scheduler
 {

@@ -1,4 +1,4 @@
-﻿using SchedulerManagementSystem.DataModels;
+﻿using SchedulerManagementSystem.DataModels.Employee;
 
 namespace SchedulerManagementSystem.DataModels.Scheduler
 {

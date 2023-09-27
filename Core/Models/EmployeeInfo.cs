@@ -1,4 +1,6 @@
-﻿namespace SchedulerManagementSystem.Models
+﻿using SchedulerManagementSystem.Models.Lookups;
+
+namespace SchedulerManagementSystem.Models
 {
     public class EmployeeInfo
     {

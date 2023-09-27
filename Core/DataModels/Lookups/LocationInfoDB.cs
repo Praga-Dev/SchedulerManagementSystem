@@ -1,4 +1,4 @@
-﻿namespace SchedulerManagementSystem.DataModels
+﻿namespace SchedulerManagementSystem.DataModels.Lookups
 {
     public class LocationInfoDB
     {

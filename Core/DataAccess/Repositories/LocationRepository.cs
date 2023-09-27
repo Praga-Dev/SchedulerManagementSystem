@@ -2,7 +2,7 @@
 using SchedulerManagementSystem.Common.Models;
 using SchedulerManagementSystem.Common.Utils;
 using SchedulerManagementSystem.DataAccess.IRepositories;
-using SchedulerManagementSystem.DataModels;
+using SchedulerManagementSystem.DataModels.Lookups;
 
 namespace SchedulerManagementSystem.DataAccess.Repositories
 {

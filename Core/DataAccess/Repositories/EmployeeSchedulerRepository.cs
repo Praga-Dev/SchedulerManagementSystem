@@ -2,10 +2,10 @@
 using SchedulerManagementSystem.Common.Models;
 using SchedulerManagementSystem.Common.Utils;
 using SchedulerManagementSystem.DataAccess.IRepositories;
-using SchedulerManagementSystem.DataModels;
 using SchedulerManagementSystem.DataAccess.IRepositories;
 using SchedulerManagementSystem.DataModels.Scheduler;
 using System.Runtime.Intrinsics;
+using SchedulerManagementSystem.DataModels.Employee;
 
 namespace SchedulerManagementSystem.DataAccess.Repositories
 {

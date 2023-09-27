@@ -1,5 +1,5 @@
 ﻿using SchedulerManagementSystem.Common.Models;
-using SchedulerManagementSystem.DataModels;
+using SchedulerManagementSystem.DataModels.Lookups;
 
 namespace SchedulerManagementSystem.DataAccess.IRepositories
 {
