@@ -1,0 +1,50 @@
+﻿@model Response<List<GradeInfo>>
+
+<div class="action-body-container">
+    <div class="main-grid-container">
+        <div class="pk-table-wrapper">
+            <table class="table table-bordered align-middle table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th class="header" scope="col">
+                            <p class="h6 fw-bold">Grade Name</p>
+                        </th>
+                        <th class="header" scope="col">
+                            <div class="d-block">
+                                <p class="h6 fw-bold text-right">Actions</p>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.IsSuccess && Model.Data != null && Model.Data.Any())
+                    {
+                        @foreach (var grade in Model.Data)
+                        {
+                            <tr>
+                                <td scope="row">
+                                    @if (!string.IsNullOrWhiteSpace(grade.Name))
+                                    {
+                                        <p>@grade.Name</p>
+                                    }
+                                </td>
+                                <td scope="row">
+                                    <div class="d-flex justify-content-end">
+                                        <span class="material-icons-outlined arrow btn-icon btnEditGrade" id="btnEditGrade_@grade.Id"
+                                              title="Update Grade" onclick="editGrade('@grade.Id')">
+                                            edit
+                                        </span>
+                                        <span class="material-icons-outlined arrow btn-icon btnDeleteGrade" id="btnDeleteGrade_@grade.Id"
+                                              title="Delete Grade" onclick="deleteGrade('@grade.Id', '@grade.Name')">
+                                            delete
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

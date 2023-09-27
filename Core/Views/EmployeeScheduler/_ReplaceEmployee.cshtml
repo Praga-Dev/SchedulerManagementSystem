@@ -1,0 +1,103 @@
+﻿@using SchedulerManagementSystem.Models.Scheduler;
+@model Response<List<CalendarEmployeeInfo>>
+
+@if (Model != null)
+{
+    Guid oldEmployee = Guid.Empty;
+
+    if (TempData.ContainsKey("OLD_EMPLOYEE"))
+    {
+        oldEmployee = new Guid(Convert.ToString(TempData["OLD_EMPLOYEE"]));
+    }
+
+    <div id="replaceCalendarEmployeeModal" class="modal"
+         data-bs-backdrop="static">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"
+             style="min-width:80%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="replaceEmployeeTitle">
+                        Replace Employee
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 pk-employee-calendar-search-input">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input id="searchTextInput" name="searchTextInput" type="text"
+                                       class="form-control form-control-sm"
+                                       placeholder="Filter"
+                                       autocomplete="off">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="employeeListContainer" class="pk-emp-tbl-wrapper">
+                        <div class="pk-emp-tbl-container">
+                            <div class="action-body-container">
+                                <div class="main-grid-container">
+                                    <div class="pk-table-wrapper">
+                                        <table id="manageCalendarEmployeeTbl"
+                                               class="table table-responsive table-bordered align-middle table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="header replace-col-in-table" scope="col"></th>
+                                                    <th class="header" scope="col"><span class="h6 fw-bold">Employee Name</span></th>
+                                                    <th class="header" scope="col"><span class="h6 fw-bold">Location</span></th>
+                                                    <th class="header" scope="col"><span class="h6 fw-bold">Grade</span></th>
+                                                    <th class="header" scope="col"><span class="h6 fw-bold">Total Working Hours</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Helpers.IsValidGuid(oldEmployee) && Helpers.IsValidResponse(Model) && Model.Data.Any())
+                                                {
+                                                    @foreach (var employee in Model.Data.Where(e => !e.IsAddedToCalendar).ToList())
+                                                    {
+                                                        <tr>
+                                                            <td scope="row" class="text-start">
+                                                                @if (!string.IsNullOrWhiteSpace(employee.Name))
+                                                                {
+                                                                    <button class="btn btn-primary" onclick="replaceEmployeeFromCalendarList('@oldEmployee', '@employee.Id')">
+                                                                        Replace
+                                                                    </button>
+                                                                }
+                                                            </td>
+                                                            <td scope="row" class="text-start">
+                                                                @if (!string.IsNullOrWhiteSpace(employee.Name))
+                                                                {
+                                                                    <p>@employee.Name</p>
+                                                                }
+                                                            </td>
+                                                            <td scope="row">
+                                                                @if (employee.LocationInfo != null && !string.IsNullOrWhiteSpace(employee.LocationInfo.Name))
+                                                                {
+                                                                    <p>@employee.LocationInfo.Name</p>
+                                                                }
+                                                            </td>
+                                                            <td scope="row">
+                                                                @if (employee.GradeInfo != null && !string.IsNullOrWhiteSpace(employee.GradeInfo.Name))
+                                                                {
+                                                                    <p>@employee.GradeInfo.Name</p>
+                                                                }
+                                                            </td>
+                                                            <td scope="row">
+                                                                <p>@employee.TotalHours</p>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/employee-scheduler/replace-employee-calendar.js" asp-append-version="true"></script>
+}

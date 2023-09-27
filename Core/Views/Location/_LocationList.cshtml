@@ -1,0 +1,50 @@
+﻿@model Response<List<LocationInfo>>
+
+<div class="action-body-container">
+    <div class="main-grid-container">
+        <div class="pk-table-wrapper">
+            <table class="table table-bordered align-middle table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th class="header" scope="col">
+                            <p class="h5">Location Name</p>
+                        </th>
+                        <th class="header" scope="col">
+                            <div class="d-block">
+                                <p class="h5 text-right">Actions</p>
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.IsSuccess && Model.Data != null && Model.Data.Any())
+                    {
+                        @foreach (var location in Model.Data)
+                        {
+                            <tr>
+                                <td scope="row">
+                                    @if (!string.IsNullOrWhiteSpace(location.Name))
+                                    {
+                                        <p>@location.Name</p>
+                                    }
+                                </td>
+                                <td scope="row">
+                                    <div class="d-flex justify-content-end">
+                                        <span class="material-icons-outlined arrow btn-icon btnEditLocation" id="btnEditLocation_@location.Id"
+                                              title="Update Location" onclick="editLocation('@location.Id')">
+                                            edit
+                                        </span>
+                                        <span class="material-icons-outlined arrow btn-icon btnDeleteLocation" id="btnDeleteLocation_@location.Id"
+                                              title="Delete Location" onclick="deleteLocation('@location.Id', '@location.Name')">
+                                            delete
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+﻿@using SchedulerManagementSystem.Models;
+@using SchedulerManagementSystem.Models.Scheduler;
+@model Response<DashboardViewModel>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+
+<div class="container">
+    <div id="employeeSchedulerCalendarContainer">
+        <partial name="_EmployeeSchedulerCalendar.cshtml" />
+    </div>
+</div>
+
+<div id="manageCalendarEmployeeTblContainer">
+    <partial name="_ManageCalendarEmployeeList.cshtml" model="new Response<List<CalendarEmployeeInfo>>()" />
+</div>
+
+<div id="replaceCalendarEmployeeTblContainer">
+    <partial name="_ReplaceEmployee.cshtml" model="new Response<List<CalendarEmployeeInfo>>()" />
+</div>
+
+<script src="~/js/employee-scheduler/employee-scheduler.js" asp-append-version="true"></script>
