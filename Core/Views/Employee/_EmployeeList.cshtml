@@ -20,9 +20,9 @@
                         {
                             <tr>
                                 <td scope="row">
-                                    @if (!string.IsNullOrWhiteSpace(employee.Name))
+                                    @if (!string.IsNullOrWhiteSpace(employee.FirstName) && !string.IsNullOrWhiteSpace(employee.LastName))
                                     {
-                                        <p>@employee.Name</p>
+                                        <p>@(employee.FirstName + " " + employee.MiddleName + ", " + employee.LastName) </p>
                                     }
                                 </td>
                                 <td scope="row">
@@ -47,7 +47,7 @@
                                             edit
                                         </span>
                                         <span class="material-icons-outlined arrow btn-icon btnDeleteEmployee" id="btnDeleteEmployee_@employee.Id"
-                                              title="Delete Employee" onclick="deleteEmployee('@employee.Id', '@employee.Name')">
+                                              title="Delete Employee" onclick="deleteEmployee('@employee.Id', '@(employee.FirstName)')">
                                             delete
                                         </span>
                                     </div>

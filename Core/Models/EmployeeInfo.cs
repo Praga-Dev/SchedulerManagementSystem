@@ -1,23 +1,20 @@
-﻿using SchedulerManagementSystem.Models.Lookups;
+﻿using SchedulerManagementSystem.Models.Employee;
+using SchedulerManagementSystem.Models.Lookups;
 using System.ComponentModel.DataAnnotations;
 
 namespace SchedulerManagementSystem.Models
 {
-    public class EmployeeInfo
+    public class EmployeeInfo : BaseEmployeeInfo
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
 
         [Required]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
-
-        [Display(Name = "Middle Initial")]
-        public string MiddleName { get; set; }
+        public TitleInfo TitleInfo { get; set; }
 
         [Required]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        public EmployeeRoleInfo EmployeeRoleInfo { get; set; }
+
+        [Required]
+        public int WorkHoursPerWeek { get; set; }
 
         [Required]
         public DepartmentInfo DepartmentInfo { get; set; }
@@ -26,23 +23,7 @@ namespace SchedulerManagementSystem.Models
         public DepartmentInfo BudgetDepartmentInfo { get; set; }
 
         [Required]
-        public LocationInfo LocationInfo { get; set; }
-
-        //// TODO Need type 
-        //[Required]
-        //public string ChargeCode { get; set; }
-
-        [Required]
-        public TitleInfo TitleInfo { get; set; }
-        
-        [Required]
-        public EmployeeRoleInfo EmployeeRoleInfo { get; set; }
-
-        [Required]
-        public int WorkHoursPerWeek { get; set; }
-
-        [Required]
-        public EmployeeInfo DirectReportInfo { get; set; }
+        public BaseEmployeeInfo DirectReportInfo { get; set; }
 
         [Required]
         public string LoginID { get; set; }
@@ -102,15 +83,6 @@ namespace SchedulerManagementSystem.Models
         public DateTime LOA_Date { get; set; }
         public DateTime ReInstateDate { get; set; }
 
-        #endregion
-
-
-        #region Custom Fields
-
-        public GradeInfo GradeInfo { get; set; }
-
-        public int TotalHours { get; set; }
-        
         #endregion
     }
 }

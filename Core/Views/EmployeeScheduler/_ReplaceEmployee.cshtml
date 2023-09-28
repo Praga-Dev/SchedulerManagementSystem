@@ -56,17 +56,15 @@
                                                     {
                                                         <tr>
                                                             <td scope="row" class="text-start">
-                                                                @if (!string.IsNullOrWhiteSpace(employee.Name))
+                                                                @if (!string.IsNullOrWhiteSpace(employee.FirstName) && !string.IsNullOrWhiteSpace(employee.LastName))
                                                                 {
-                                                                    <button class="btn btn-primary" onclick="replaceEmployeeFromCalendarList('@oldEmployee', '@employee.Id')">
-                                                                        Replace
-                                                                    </button>
+                                                                    <button class="btn btn-primary" onclick="replaceEmployeeFromCalendarList('@oldEmployee', '@employee.Id')">Replace</button>
                                                                 }
                                                             </td>
                                                             <td scope="row" class="text-start">
-                                                                @if (!string.IsNullOrWhiteSpace(employee.Name))
+                                                                @if (!string.IsNullOrWhiteSpace(employee.FirstName) && !string.IsNullOrWhiteSpace(employee.LastName))
                                                                 {
-                                                                    <p>@employee.Name</p>
+                                                                    <p>@(employee.FirstName + " " + employee.MiddleName + ", " + employee.LastName) </p>
                                                                 }
                                                             </td>
                                                             <td scope="row">

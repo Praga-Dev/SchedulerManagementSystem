@@ -65,11 +65,19 @@ namespace SchedulerManagementSystem.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, response);
                 }
 
-                if (string.IsNullOrWhiteSpace(employeeInfo.Name))
+                if (string.IsNullOrWhiteSpace(employeeInfo.FirstName))
                 {
                     response.Message ??= ResponseConstants.INVALID_PARAM_GRADE_NAME;
                     return StatusCode(StatusCodes.Status400BadRequest, response);
                 }
+
+                if (string.IsNullOrWhiteSpace(employeeInfo.LastName))
+                {
+                    response.Message ??= ResponseConstants.INVALID_PARAM_GRADE_NAME;
+                    return StatusCode(StatusCodes.Status400BadRequest, response);
+                }
+
+                // TODO Check for all Mandatory Fields
 
                 EmployeeInfoDB employeeInfoDB = EmployeeCommonMapper.GetEmployeeInfoDB(employeeInfo);
 
@@ -108,11 +116,19 @@ namespace SchedulerManagementSystem.Controllers
                     return StatusCode(StatusCodes.Status400BadRequest, response);
                 }
 
-                if (string.IsNullOrWhiteSpace(employeeInfo.Name))
+                if (string.IsNullOrWhiteSpace(employeeInfo.FirstName))
                 {
                     response.Message ??= ResponseConstants.INVALID_PARAM_GRADE_NAME;
                     return StatusCode(StatusCodes.Status400BadRequest, response);
                 }
+
+                if (string.IsNullOrWhiteSpace(employeeInfo.LastName))
+                {
+                    response.Message ??= ResponseConstants.INVALID_PARAM_GRADE_NAME;
+                    return StatusCode(StatusCodes.Status400BadRequest, response);
+                }
+
+                // TODO Check for all Mandatory Fields
 
                 EmployeeInfoDB employeeInfoDB = EmployeeCommonMapper.GetEmployeeInfoDB(employeeInfo);
 

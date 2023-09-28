@@ -60,7 +60,6 @@ namespace SchedulerManagementSystem.Common.Mappers
                     AvailableHours = employee.AvailableHours,
                     EmployeeInfoId = employee.EmployeeInfoId,
                     WorkScheduledDate = employee.WorkScheduledDate
-
                 });
 
             return response;
@@ -104,10 +103,12 @@ namespace SchedulerManagementSystem.Common.Mappers
                         EmployeeSchedulerVM employeeSchedulerVM = new()
                         {
                             Id = employee.Id,
-                            Name = employee.Name,
+                            FirstName = employee.FirstName,
+                            MiddleName = employee.MiddleName,
+                            LastName = employee.LastName,
                             GradeInfo = employee.GradeInfo,
                             LocationInfo = employee.LocationInfo,
-                            TotalHours = employee.TotalHours,
+                            TotalHours = employee.TotalHours,                            
                             EmployeeSchedulerInfoList = employeeSchedulerInfoList.Where(sch => sch.EmployeeInfoId == employee.Id).ToList()
                         };
 
@@ -139,20 +140,21 @@ namespace SchedulerManagementSystem.Common.Mappers
                 .ConvertAll(clEmp => new CalendarEmployeeInfo
                 {
                     Id = clEmp.Id,
-                    Name = clEmp.Name,
-                    GradeInfo = new()
-                    {
-                        Id = clEmp.GradeId,
-                        Name = clEmp.GradeName
-                    },
+                    FirstName = clEmp.FirstName,
+                    MiddleName = clEmp.MiddleName,
+                    LastName = clEmp.LastName,
                     LocationInfo = new()
                     {
                         Id = clEmp.LocationId,
                         Name = clEmp.LocationName
                     },
+                    GradeInfo = new()
+                    {
+                        Id = clEmp.GradeId,
+                        Name = clEmp.GradeName
+                    },                    
                     TotalHours = clEmp.TotalHours,
-                    IsAddedToCalendar = clEmp.IsAddedToCalendar
-
+                    IsAddedToCalendar = clEmp.IsAddedToCalendar                    
                 });
 
             return response;

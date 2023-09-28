@@ -68,9 +68,9 @@
                                                                        type="checkbox" value="@employee.Id" />
                                                             </td>
                                                             <td scope="row">
-                                                                @if (!string.IsNullOrWhiteSpace(employee.Name))
+                                                                @if (!string.IsNullOrWhiteSpace(employee.FirstName) && !string.IsNullOrWhiteSpace(employee.LastName))
                                                                 {
-                                                                    <p>@employee.Name</p>
+                                                                    <p>@(employee.FirstName + " " + employee.MiddleName + ", " + employee.LastName) </p>
                                                                 }
                                                             </td>
                                                             <td scope="row">

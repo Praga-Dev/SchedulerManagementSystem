@@ -164,7 +164,9 @@ namespace SchedulerManagementSystem.DataAccess.Repositories
                             new()
                             {
                                 Id = employee.Id,
-                                Name = employee.Name,
+                                FirstName = employee.FirstName,
+                                MiddleName = employee.MiddleName,
+                                LastName = employee.LastName,
                                 GradeId = employee.GradeId,
                                 GradeName = employee.GradeName,
                                 LocationId = employee.LocationId,

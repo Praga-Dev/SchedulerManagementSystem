@@ -2,18 +2,10 @@
 
 namespace SchedulerManagementSystem.DataModels.Employee
 {
-    public class EmployeeInfoDB
+    public class EmployeeInfoDB : BaseEmployeeInfoDB
     {
-        public Guid Id { get; set; }
-        
-        public string Name { get; set; }
-
 
         #region Employee Information IAD
-
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
 
         public Guid DepartmentId { get; set; }
         public string DepartmentName { get; set; }
@@ -21,24 +13,25 @@ namespace SchedulerManagementSystem.DataModels.Employee
         public Guid BudgetDepartmentId { get; set; }
         public string BudgetDepartmentName { get; set; }
 
-        public Guid LocationId { get; set; }
-        public string LocationName { get; set; }
+        
 
         //// TODO Need type 
         //public string ChargeCode { get; set; }
         
         public Guid TitleId { get; set; }
-        public string Title { get; set; }
+        public string TitleName { get; set; }
 
         // TODO Does Title and Employee Role same
         public Guid EmployeeRoleId { get; set; }
-        public string EmployeeRole { get; set; }
+        public string EmployeeRoleName { get; set; }
 
         public int WorkHoursPerWeek { get; set; }
 
         // Employee
         public Guid DirectReportId { get; set; }
-        public string DirectReportName { get; set; }
+        public string DirectReportFirstName { get; set; }
+        public string DirectReportMiddleName { get; set; }
+        public string DirectReportLastName { get; set; }
 
         public string LoginID { get; set; }
         public DateTime IAD_StartDate { get; set; }
@@ -90,14 +83,6 @@ namespace SchedulerManagementSystem.DataModels.Employee
 
         public DateTime LOA_Date { get; set; }
         public DateTime ReInstateDate { get; set; }
-
-        #endregion
-
-        #region Custom Fields
-
-        public Guid GradeId { get; set; }
-        public string GradeName { get; set; }
-        public int TotalHours { get; set; }
 
         #endregion
     }

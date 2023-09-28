@@ -17,8 +17,8 @@
                             <div class="col-sm-12">
                                 <form id="formCreateEmployee" data-id="@Model.Id" data-isupdate="@(Guid.Empty != Model.Id)" autocomplete="off">
                                     <div class="form-group">
-                                        <label for="employeeName" class="form-label">Name <span class="mandatory">*</span></label>
-                                        <input id="employeeName" name="employeeName" asp-for="@Model.Name" type="text" class="form-control form-control-sm" aria-describedby="employeeNameHelp"
+                                        <label asp-for="@Model.FirstName" for="employeeName" class="form-label">Name <span class="mandatory">*</span></label>
+                                        <input id="employeeName" name="employeeName" asp-for="@Model.FirstName" type="text" class="form-control form-control-sm" aria-describedby="employeeNameHelp"
                                                maxlength="50"
                                                data-err-required="Name is required"
                                                data-err-min-length="Name is too short"

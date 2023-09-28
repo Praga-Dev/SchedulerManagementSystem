@@ -2,7 +2,7 @@
 
 namespace SchedulerManagementSystem.DataModels.Scheduler
 {
-    public class CalendarEmployeeInfoDB : EmployeeInfoDB
+    public class CalendarEmployeeInfoDB : BaseEmployeeInfoDB
     {
         public bool IsAddedToCalendar { get; set; }
     }
