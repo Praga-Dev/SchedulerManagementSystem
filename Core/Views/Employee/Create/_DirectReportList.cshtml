@@ -1,0 +1,18 @@
+﻿@model Response<List<BaseEmployeeInfo>>
+
+<div class="form-group">
+    <label class="form-label">
+        Direct Report
+        <span class="mandatory">*</span>
+    </label>
+    <select id="selectDirectReport" name="selectDirectReport" class="form-control form-control-sm">
+        @if (Model != null && Model.Data != null && Model.Data.Any())
+        {
+            <option disabled selected value=""> -- select an option -- </option>
+            @foreach (var directReport in Model.Data)
+            {
+                <option value="@directReport.Id">@(directReport.FirstName + ", " + directReport.LastName)</option>
+            }
+        }
+    </select>
+</div>

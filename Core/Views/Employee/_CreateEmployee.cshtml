@@ -3,7 +3,7 @@
 @if (Model != null)
 {
     <div class="modal fade" data-bs-backdrop="static" id="createEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header">
                     <b class="modal-title" id="createEmployeeTitle">
@@ -15,26 +15,172 @@
                     <div id="EmployeeCreateFormContainer">
                         <div class="row">
                             <div class="col-sm-12">
-                                <form id="formCreateEmployee" data-id="@Model.Id" data-isupdate="@(Guid.Empty != Model.Id)" autocomplete="off">
-                                    <div class="form-group">
-                                        <label asp-for="@Model.FirstName" for="employeeName" class="form-label">Name <span class="mandatory">*</span></label>
-                                        <input id="employeeName" name="employeeName" asp-for="@Model.FirstName" type="text" class="form-control form-control-sm" aria-describedby="employeeNameHelp"
-                                               maxlength="50"
-                                               data-err-required="Name is required"
-                                               data-err-min-length="Name is too short"
-                                               autocomplete="off">
-                                        <div id="employeeNameHelp" style="display:none;" class="form-text">Name is case sensitive, ranges between 2 and 50 characters.</div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div id="gradeListDDContainer" class="form-group" data-val="@(Model?.GradeInfo?.Id != Guid.Empty ? Model?.GradeInfo?.Id : "")">
-                                            <partial name="~/Views/Common/_GradeList.cshtml" model="null" />
+                                <form id="formCreateEmployee" method="post"
+                                      asp-controller="Employee" asp-action="CreateEmployeeInfo"
+                                    data-id="@Model.Id" data-isupdate="@(Guid.Empty != Model.Id)" autocomplete="off">
+                                    <!-- progressbar -->
+                                    <ul id="progressbar">
+                                        <li class="active">Personal Details</li>
+                                        <li>Social Profiles</li>
+                                        <li>Account Setup</li>
+                                    </ul>
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label asp-for="@Model.FirstName" class="form-label"></label>
+                                                    <input asp-for="@Model.FirstName" autofocus autocomplete="off">
+                                                    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.MiddleName" class="form-label"></label>
+                                                        <input asp-for="@Model.MiddleName" autocomplete="off">
+                                                        <span asp-validation-for="@Model.MiddleName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">  
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.LastName" class="form-label"></label>
+                                                        <input asp-for="@Model.LastName" autocomplete="off">
+                                                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div id="locationListDDContainer" class="form-group" data-val="@(Model?.LocationInfo?.Id != Guid.Empty ? Model?.LocationInfo?.Id : "")">
-                                            <partial name="~/Views/Common/_LocationList.cshtml" model="null" />
+                                        <input type="submit" value="Create" />
+                                    </fieldset>
+                                    @* <!-- fieldsets -->
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label asp-for="@Model.FirstName" for="employeeFirstName" class="form-label">First Name <span class="mandatory">*</span></label>
+                                                    <input id="employeeFirstName" name="employeeFirstName" asp-for="@Model.FirstName" type="text" class="form-control form-control-sm" aria-describedby="employeeFirstNameHelp"
+                                                           maxlength="50"
+                                                           data-err-required="First Name is required"
+                                                           data-err-min-length="First Name is too short"
+                                                           data-err-max-length="First Name is too long"
+                                                           autofocus autocomplete="off">
+                                                    <div id="employeeFirstNameHelp" style="display:none;" class="form-text">First Name is case sensitive, ranges between 2 and 15 characters.</div>
+                                                    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label asp-for="@Model.MiddleName" for="employeeMiddleName" class="form-label">Middle Name</label>
+                                                    <input id="employeeMiddleName" name="employeeMiddleName" asp-for="@Model.MiddleName" type="text" class="form-control form-control-sm" aria-describedby="employeeMiddleNameHelp"
+                                                           maxlength="50"
+                                                           data-err-min-length="Middle Name is too short"
+                                                           data-err-max-length="Middle Name is too long"
+                                                           autocomplete="off">
+                                                    <div id="employeeMiddleNameHelp" style="display:none;" class="form-text">MiddleName is case sensitive, ranges between 0 and 50 characters.</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label asp-for="@Model.LastName" for="employeeLastName" class="form-label">Last Name <span class="mandatory">*</span></label>
+                                                    <input id="employeeLastName" name="employeeLastName" asp-for="@Model.LastName" type="text" class="form-control form-control-sm" aria-describedby="employeeNameHelp"
+                                                           maxlength="50"
+                                                           data-err-required="Last Name is required"
+                                                           data-err-min-length="Last Name is too short"
+                                                           data-err-max-length="Last Name is too long"
+                                                           autocomplete="off">
+                                                    <div id="employeeNameHelp" style="display:none;" class="form-text">LastName is case sensitive, ranges between 2 and 50 characters.</div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div id="gradeListDDContainer" class="form-group" data-val="@(Model?.GradeInfo?.Id != Guid.Empty ? Model?.GradeInfo?.Id : "")">
+                                                        <partial name="~/Views/Employee/Create/_GradeList.cshtml" model="null" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div id="locationListDDContainer" class="form-group" data-val="@(Model?.LocationInfo?.Id != Guid.Empty ? Model?.LocationInfo?.Id : "")">
+                                                        <partial name="~/Views/Employee/Create/_LocationList.cshtml" model="null" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div id="departmentListDDContainer" class="form-group" data-val="@(Model?.DepartmentInfo?.Id != Guid.Empty ? Model?.DepartmentInfo?.Id : "")">
+                                                        <partial name="~/Views/Employee/Create/_DepartmentList.cshtml" model="null" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div id="budgetDepartmentListDDContainer" class="form-group" data-val="@(Model?.BudgetDepartmentInfo?.Id != Guid.Empty ? Model?.BudgetDepartmentInfo?.Id : "")">
+                                                        <partial name="~/Views/Employee/Create/_BudgetDepartmentList.cshtml" model="null" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div id="titleListDDContainer" class="form-group"
+                                                         data-val="@(Model?.TitleInfo?.Id != Guid.Empty ? Model?.TitleInfo?.Id : "")">
+                                                        <partial name="~/Views/Employee/Create/_TitleList.cshtml" model="null" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div id="employeeRoleListDDContainer" class="form-group"
+                                                         data-val="@(Model?.EmployeeRoleInfo?.Id != Guid.Empty ? Model?.EmployeeRoleInfo?.Id : "")">
+                                                        <partial name="~/Views/Employee/Create/_EmployeeRoleList.cshtml" model="null" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="directReportListDDContainer" class="form-group" data-val="@(Model?.DirectReportInfo?.Id != Guid.Empty ? Model?.DirectReportInfo?.Id : "")">
+                                                <partial name="~/Views/Employee/Create/_DirectReportList.cshtml" model="null" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.WorkHoursPerWeek" for="employeeWorkHoursPerWeek" class="form-label">Work Hours Per Week</label>
+                                                        <input id="employeeWorkHoursPerWeek" name="employeeWorkHoursPerWeek" asp-for="@Model.WorkHoursPerWeek" type="number" class="form-control form-control-sm" aria-describedby="employeeWorkHoursPerWeek"
+                                                               min="0"
+                                                               max="45"
+                                                               data-err-min-length="Work hours is too low"
+                                                               data-err-max-length="Work hours is too high"
+                                                               autocomplete="off">
+                                                        <div id="employeeMiddleNameHelp" style="display:none;" class="form-text">MiddleName is case sensitive, ranges between 0 and 50 characters.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label asp-for="@Model.LoginID" for="employeeLoginID" class="form-label">Work Hours Per Week</label>
+                                                        <input id="employeeLoginID" name="employeeLoginID" asp-for="@Model.MiddleName" type="number" class="form-control form-control-sm" aria-describedby="employeeMiddleNameHelp"
+                                                               maxlength="15"
+                                                               data-err-min-length="Middle Name is too short"
+                                                               data-err-max-length="Middle Name is too long"
+                                                               autocomplete="off">
+                                                        <div id="employeeMiddleNameHelp" style="display:none;" class="form-text">MiddleName is case sensitive, ranges between 0 and 50 characters.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <input type="button" name="next" class="next action-button" value="Next" />
+                                    </fieldset> *@
                                     <button type="submit" id="btnEmployeeSaveSubmit" class="display-none" />
                                 </form>
                             </div>
@@ -48,6 +194,6 @@
             </div>
         </div>
     </div>
-
+    <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml"/>
     <script src="~/js/employee/employee-validation.js" asp-append-version="true"></script>
 }

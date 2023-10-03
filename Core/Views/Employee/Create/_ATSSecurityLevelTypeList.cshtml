@@ -1,0 +1,18 @@
+﻿@model Response<List<ATS_SecurityLevelTypeInfo>>
+
+<div class="form-group">
+    <label class="form-label">
+        ATS Admin Level Type
+        <span class="mandatory">*</span>
+    </label>
+    <select id="selectATSSecurityLevelType" name="selectATSSecurityLevelType" class="form-control form-control-sm">
+        @if (Model != null && Model.Data != null && Model.Data.Any())
+        {
+            <option disabled selected value=""> -- select an option -- </option>
+            @foreach (var _ATSSecurityLevelType in Model.Data)
+            {
+                <option value="@_ATSSecurityLevelType.Id">@_ATSSecurityLevelType.Name</option>
+            }
+        }
+    </select>
+</div>

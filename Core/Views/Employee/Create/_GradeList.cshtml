@@ -1,0 +1,9 @@
+﻿@model Response<List<GradeInfo>>
+
+@if (Model != null && Model.Data != null && Model.Data.Any())
+{
+    @foreach (var grade in Model.Data)
+    {
+        <option value="@grade.Id">@grade.Name</option>
+    }
+}

@@ -1,0 +1,18 @@
+﻿@model Response<List<DepartmentInfo>>
+
+<div class="form-group">
+    <label class="form-label">
+        Budget Department List
+        <span class="mandatory">*</span>
+    </label>
+    <select id="selectBudgetDeptList" name="selectBudgetDeptList" class="form-control form-control-sm">
+        @if (Model != null && Model.Data != null && Model.Data.Any())
+        {
+            <option disabled selected value=""> -- select an option -- </option>
+            @foreach (var budgetDept in Model.Data)
+            {
+                <option value="@budgetDept.Id">@budgetDept.Name</option>
+            }
+        }
+    </select>
+</div>

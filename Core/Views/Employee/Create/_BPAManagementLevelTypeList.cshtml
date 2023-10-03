@@ -1,0 +1,18 @@
+﻿@model Response<List<BPA_ManagementLevelTypeInfo>>
+
+<div class="form-group">
+    <label class="form-label">
+        BPA management Level Type
+        <span class="mandatory">*</span>
+    </label>
+    <select id="selectBPAManagementLevelType" name="selectBPAManagementLevelType" class="form-control form-control-sm">
+        @if (Model != null && Model.Data != null && Model.Data.Any())
+        {
+            <option disabled selected value=""> -- select an option -- </option>
+            @foreach (var _BPAManagementLevelType in Model.Data)
+            {
+                <option value="@_BPAManagementLevelType.Id">@_BPAManagementLevelType.Name</option>
+            }
+        }
+    </select>
+</div>

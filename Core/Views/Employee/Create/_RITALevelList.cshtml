@@ -1,0 +1,18 @@
+﻿@model Response<List<AccessLevelTypeInfo>>
+
+<div class="form-group">
+    <label class="form-label">
+        RITA Level Type
+        <span class="mandatory">*</span>
+    </label>
+    <select id="selectRITALevelType" name="selectRITALevelType" class="form-control form-control-sm">
+        @if (Model != null && Model.Data != null && Model.Data.Any())
+        {
+            <option disabled selected value=""> -- select an option -- </option>
+            @foreach (var _RITALevelType in Model.Data)
+            {
+                <option value="@_RITALevelType.Id">@_RITALevelType.Name</option>
+            }
+        }
+    </select>
+</div>

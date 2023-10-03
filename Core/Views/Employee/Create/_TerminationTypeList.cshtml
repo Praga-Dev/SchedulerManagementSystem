@@ -1,0 +1,18 @@
+﻿@model Response<List<TerminationTypeInfo>>
+
+<div class="form-group">
+    <label class="form-label">
+        Termination Type
+        <span class="mandatory">*</span>
+    </label>
+    <select id="selectTerminationType" name="selectTerminationType" class="form-control form-control-sm">
+        @if (Model != null && Model.Data != null && Model.Data.Any())
+        {
+            <option disabled selected value=""> -- select an option -- </option>
+            @foreach (var terminationType in Model.Data)
+            {
+                <option value="@terminationType.Id">@terminationType.Name</option>
+            }
+        }
+    </select>
+</div>
