@@ -9,6 +9,7 @@ using SchedulerManagementSystem.Models;
 
 namespace SchedulerManagementSystem.Controllers
 {
+
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository _employeeRepository;
@@ -50,6 +51,28 @@ namespace SchedulerManagementSystem.Controllers
             }
 
             return View("~/Views/Employee/Index.cshtml", response);
+        }
+
+        [HttpGet, Route("~/employee/create")]
+        public async Task<ActionResult> GetCreateEmployeeView()
+        {
+            EmployeeInfo response = new();
+
+            try
+            {
+                if (!Helpers.IsValidGuid(AppConstants.LOGGED_IN_USER_ID))
+                {
+                    // TODO Redirect to Login
+                    return View("~/Views/Employee/CreateEmployee.cshtml", response);
+                }
+
+                return View("~/Views/Employee/CreateEmployee.cshtml", response);
+            }
+            catch (Exception ex)
+            {
+                // TODO Add exception msg to viewbag and redirect to index action
+                return View("~/Views/Employee/CreateEmployee.cshtml", response);
+            }
         }
 
         [HttpPost, Route("~/employee/create")]
@@ -238,7 +261,7 @@ namespace SchedulerManagementSystem.Controllers
                 if (!Helpers.IsValidGuid(AppConstants.LOGGED_IN_USER_ID))
                 {
                     response.Message ??= ResponseConstants.INVALID_LOGGED_IN_USER;
-                    return PartialView("~/Views/Common/_EmployeeList.cshtml", response);
+                    return PartialView("~/Views/Employee/Create_EmployeeList.cshtml", response);
                 }
 
                 var dbresponse = await _employeeRepository.GetEmployees(AppConstants.LOGGED_IN_USER_ID);
@@ -251,7 +274,7 @@ namespace SchedulerManagementSystem.Controllers
                         IsSuccess = dbresponse.IsSuccess
                     };
 
-                    return PartialView("~/Views/Common/_EmployeeList.cshtml", response);
+                    return PartialView("~/Views/Employee/Create_EmployeeList.cshtml", response);
 
                 }
 
@@ -262,7 +285,7 @@ namespace SchedulerManagementSystem.Controllers
                 response.Message = ResponseConstants.SOMETHING_WENT_WRONG;
             }
 
-            return PartialView("~/Views/Common/_EmployeeList.cshtml", response);
+            return PartialView("~/Views/Employee/Create_EmployeeList.cshtml", response);
         }
 
         [HttpDelete, Route("~/employee/{employeeInfoId:Guid}/delete")]

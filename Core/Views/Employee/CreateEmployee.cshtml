@@ -1,0 +1,175 @@
+﻿@model EmployeeInfo
+@{
+    ViewData["Title"] = "CreateEmployee";
+}
+
+@if (Model != null)
+{
+    <div class="modal-header">
+        <h5>
+            <b id="createEmployeeTitle">
+                Create Employee
+            </b>
+        </h5>
+    </div>
+
+    <div id="EmployeeCreateFormContainer">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul id="progressbar">
+                    <li class="active">Personal Details</li>
+                    <li>Social Profiles</li>
+                    <li>Account Setup</li>
+                </ul>
+                <form id="formCreateEmployee" method="post"
+                      asp-controller="Employee" asp-action="CreateEmployeeInfo"
+                      autocomplete="off">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="@Model.FirstName" class="form-label"></label>
+                                    <input asp-for="@Model.FirstName" autocomplete="off" class="form-control form-control-sm">
+                                    <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="@Model.MiddleName" class="form-label"></label>
+                                    <input asp-for="@Model.MiddleName" autocomplete="off" class="form-control form-control-sm">
+                                    <span asp-validation-for="@Model.MiddleName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="@Model.LastName" class="form-label"></label>
+                                    <input asp-for="@Model.LastName" autocomplete="off" class="form-control form-control-sm">
+                                    <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="gradeListDDContainer" data-val="@(Model?.GradeInfo?.Id != Guid.Empty ? Model?.GradeInfo?.Id : "")">
+                                    <div class="form-group">
+                                        <label class="form-label">
+                                            Grade
+                                            <span class="mandatory">*</span>
+                                        </label>
+                                        <select id="selectGrade" name="grade" class="form-control form-control-sm">
+                                            @* <option disabled selected value=""> -- select an option -- </option> *@
+                                            <partial name="~/Views/Employee/Create/_GradeList.cshtml" model="null" />
+                                        </select>
+                                        <span asp-validation-for="@Model.GradeInfo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="locationListDDContainer" data-val="@(Model?.LocationInfo?.Id != Guid.Empty ? Model?.LocationInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_LocationList.cshtml" model="null" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="departmentListDDContainer" data-val="@(Model?.DepartmentInfo?.Id != Guid.Empty ? Model?.DepartmentInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_DepartmentList.cshtml" model="null" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="budgetDepartmentListDDContainer" data-val="@(Model?.BudgetDepartmentInfo?.Id != Guid.Empty ? Model?.BudgetDepartmentInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_BudgetDepartmentList.cshtml" model="null" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="titleListDDContainer"
+                                     data-val="@(Model?.TitleInfo?.Id != Guid.Empty ? Model?.TitleInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_TitleList.cshtml" model="null" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="employeeRoleListDDContainer"
+                                     data-val="@(Model?.EmployeeRoleInfo?.Id != Guid.Empty ? Model?.EmployeeRoleInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_EmployeeRoleList.cshtml" model="null" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="directReportListDDContainer" data-val="@(Model?.DirectReportInfo?.Id != Guid.Empty ? Model?.DirectReportInfo?.Id : "")">
+                                <partial name="~/Views/Employee/Create/_DirectReportList.cshtml" model="null" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.WorkHoursPerWeek" class="form-label"></label>
+                                    <input asp-for="@Model.WorkHoursPerWeek" autocomplete="off" class="form-control form-control-sm">
+                                    <span asp-validation-for="@Model.WorkHoursPerWeek" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.LoginID" class="form-label"></label>
+                                    <input asp-for="@Model.LoginID" autocomplete="off" class="form-control form-control-sm">
+                                    <span asp-validation-for="@Model.LoginID" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="@Model.IAD_StartDate" class="form-label"></label>
+                                    <input asp-for="@Model.IAD_StartDate" autocomplete="off" class="form-control form-control-sm" value="">
+                                    <span asp-validation-for="@Model.IAD_StartDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="hireTypeListDDContainer" data-val="@(Model?.HireTypeInfo?.Id != Guid.Empty ? Model?.HireTypeInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_HireTypeList.cshtml" model="null" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Timesheet Exempt
+                                        <span class="mandatory">*</span>
+                                    </label>
+                                    <select id="selectTimesheetExempt" name="selectTimesheetExempt" class="form-control form-control-sm">
+                                        <option disabled selected value=""> -- select an option -- </option>
+                                        <option value="N">N</option>
+                                        <option value="Y">Y</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        Allocation
+                                        <span class="mandatory">*</span>
+                                    </label>
+                                    <select id="selectAllocation" name="selectAllocation" class="form-control form-control-sm">
+                                        <option disabled selected value=""> -- select an option -- </option>
+                                        <option value="N">N</option>
+                                        <option value="Y">Y</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <input type="button" name="next" class="next action-button" value="Next" />
+
+                    </fieldset>
+                    <button id="btnSaveEmployeeSubmit" type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
+    <script src="~/js/employee/create-employee.js" asp-append-version="true"></script>
+}
