@@ -222,7 +222,7 @@ namespace SchedulerManagementSystem.Controllers
                 if (!Helpers.IsValidGuid(AppConstants.LOGGED_IN_USER_ID))
                 {
                     response.Message ??= ResponseConstants.INVALID_LOGGED_IN_USER;
-                    return PartialView("~/Views/Common/_LocationList.cshtml", response);
+                    return PartialView("~/Views/Employee/Create/_LocationList.cshtml", response);
                 }
 
                 var dbresponse = await _locationRepository.GetLocations(AppConstants.LOGGED_IN_USER_ID);
@@ -235,7 +235,7 @@ namespace SchedulerManagementSystem.Controllers
                         IsSuccess = dbresponse.IsSuccess
                     };
 
-                    return PartialView("~/Views/Common/_LocationList.cshtml", response);
+                    return PartialView("~/Views/Employee/Create/_LocationList.cshtml", response);
 
                 }
 
@@ -246,7 +246,7 @@ namespace SchedulerManagementSystem.Controllers
                 response.Message = ResponseConstants.SOMETHING_WENT_WRONG;
             }
 
-            return PartialView("~/Views/Common/_LocationList.cshtml", response);
+            return PartialView("~/Views/Employee/Create/_LocationList.cshtml", response);
         }
 
         [HttpDelete, Route("~/location/{locationInfoId:Guid}/delete")]
