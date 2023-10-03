@@ -1,19 +1,25 @@
-﻿using SchedulerManagementSystem.Models.Lookups;
+﻿using Microsoft.AspNetCore.Mvc;
+using SchedulerManagementSystem.Models.Lookups;
 using System.ComponentModel.DataAnnotations;
 
 namespace SchedulerManagementSystem.Models.Employee
 {
+
     public class BaseEmployeeInfo
     {
+        [ScaffoldColumn(false)]
         public Guid Id { get; set; }
 
-        [Required]
+        [StringLength(20, MinimumLength = 3)]
+        [Required(ErrorMessage = "First Name is required")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Display(Name = "Middle Initial")]
+        [StringLength(20, MinimumLength = 3)]
         public string MiddleName { get; set; }
 
+        [StringLength(20, MinimumLength = 3)]
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
