@@ -14,6 +14,7 @@ namespace SchedulerManagementSystem.Models
         public EmployeeRoleInfo EmployeeRoleInfo { get; set; }
 
         [Required]
+        [Range(0, 50)]
         public int WorkHoursPerWeek { get; set; }
 
         [Required]
@@ -29,6 +30,7 @@ namespace SchedulerManagementSystem.Models
         public string LoginID { get; set; }
         
         [Required]
+        [DataType(DataType.Date)]
         public DateTime IAD_StartDate { get; set; }
 
         [Required]
