@@ -1,11 +1,11 @@
 ﻿function getGradeDDList() {
     loadSpinner();
     $.ajax({
-        url: `./grade/data-list`,
+        url: `/grade/data-list`,
         method: 'GET',
         success: function (response) {
             if (typeof response !== undefined && response !== null) {
-                $('#gradeListDDContainer').html(response);
+                $('#selectGrade').html(response);
                 let val = $('#gradeListDDContainer').data('val')
                 if (val) {
                     $('#selectGrade').val(val);
@@ -29,7 +29,7 @@
 function getLocationDDList() {
     loadSpinner();
     $.ajax({
-        url: `./location/data-list`,
+        url: `/location/data-list`,
         method: 'GET',
         success: function (response) {
             if (typeof response !== undefined && response !== null) {
