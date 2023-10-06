@@ -5,6 +5,8 @@
 
 @if (Model != null)
 {
+    <link rel="stylesheet" href="~/css/employee/create-employee.css" asp-append-version="true" />
+
     <div class="modal-header">
         <h5>
             <b id="createEmployeeTitle">
@@ -16,15 +18,18 @@
     <div id="EmployeeCreateFormContainer">
         <div class="row">
             <div class="col-sm-12">
-                <ul id="progressbar">
-                    <li class="active">Personal Details</li>
-                    <li>Social Profiles</li>
-                    <li>Account Setup</li>
-                </ul>
-                <form id="formCreateEmployee" method="post"
-                      asp-controller="Employee" asp-action="CreateEmployeeInfo"
-                      autocomplete="off">
+                <form id="formCreateEmployee" method="post" autocomplete="off"
+                      asp-controller="Employee" asp-action="CreateEmployeeInfo">
+                    <ul id="progressbar" class="pk-form-header">
+                        <li class="active">Employee Information IAD</li>
+                        <li>Application Security Information</li>
+                        <li>Employee Information AIG</li>
+                    </ul>
                     <fieldset>
+                        <div class="pk-form-header">
+                            <h2 class="fs-title">Employee Information IAD</h2>
+                            <h3 class="fs-subtitle">Please provide Employee IAD Information</h3>
+                        </div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -161,10 +166,105 @@
                         </div>
 
 
-                        <input type="button" name="next" class="next action-button" value="Next" />
+                        <div class="text-center p-2 m-2">
+                            <button type="button" name="next" class="next btn pk-btn-outline-primary">Next</button>
+                        </div>
 
                     </fieldset>
-                    <button id="btnSaveEmployeeSubmit" type="submit" class="btn btn-primary">Save changes</button>
+                    <fieldset>
+                        <div class="pk-form-header">
+                            <h2 class="fs-title">Application Security Information</h2>
+                            <h3 class="fs-subtitle">Please provide Employee Application Security Information</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div id="ats_adminLevelTypeListDDContainer" data-val="@(Model?.ATS_AdminLevelTypeInfo?.Id != Guid.Empty ? Model?.ATS_AdminLevelTypeInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_ATSAdminLevelTypeList.cshtml" model="null" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="ats_securityLevelTypeListDDContainer" data-val="@(Model?.ATS_SecurityLevelTypeInfo?.Id != Guid.Empty ? Model?.ATS_SecurityLevelTypeInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_ATSSecurityLevelTypeList.cshtml" model="null" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="ats_securityLevelTypeListDDContainer" data-val="@(Model?.BPA_ManagementLevelTypeInfo?.Id != Guid.Empty ? Model?.BPA_ManagementLevelTypeInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_BPAManagementLevelTypeList.cshtml" model="null" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="ats_adminLevelTypeListDDContainer" data-val="@(Model?.RITA_LevelInfo?.Id != Guid.Empty ? Model?.RITA_LevelInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_RITALevelList.cshtml" model="null" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="ats_securityLevelTypeListDDContainer" data-val="@(Model?.BPA_LevelInfo?.Id != Guid.Empty ? Model?.BPA_LevelInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_BPALevelList.cshtml" model="null" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-end p-2 m-2 ">
+                                    <button type="button" name="previous" class="previous btn pk-btn-outline-primary">Previous</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-start p-2 m-2">
+                                    <button type="button" name="next" class="next btn pk-btn-outline-primary">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div class="pk-form-header">
+                            <h2 class="fs-title">Employee Information AIG</h2>
+                            <h3 class="fs-subtitle">Please provide Employee Application Security Information</h3>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div id="ats_adminLevelTypeListDDContainer" data-val="@(Model?.ATS_AdminLevelTypeInfo?.Id != Guid.Empty ? Model?.ATS_AdminLevelTypeInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_ATSAdminLevelTypeList.cshtml" model="null" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="ats_securityLevelTypeListDDContainer" data-val="@(Model?.ATS_SecurityLevelTypeInfo?.Id != Guid.Empty ? Model?.ATS_SecurityLevelTypeInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_ATSSecurityLevelTypeList.cshtml" model="null" />
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div id="ats_securityLevelTypeListDDContainer" data-val="@(Model?.BPA_ManagementLevelTypeInfo?.Id != Guid.Empty ? Model?.BPA_ManagementLevelTypeInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_BPAManagementLevelTypeList.cshtml" model="null" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="ats_adminLevelTypeListDDContainer" data-val="@(Model?.RITA_LevelInfo?.Id != Guid.Empty ? Model?.RITA_LevelInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_RITALevelList.cshtml" model="null" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="ats_securityLevelTypeListDDContainer" data-val="@(Model?.BPA_LevelInfo?.Id != Guid.Empty ? Model?.BPA_LevelInfo?.Id : "")">
+                                    <partial name="~/Views/Employee/Create/_BPALevelList.cshtml" model="null" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="text-end p-2 m-2 ">
+                                    <button type="button" name="previous" class="previous btn pk-btn-outline-primary">Previous</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-start p-2 m-2">
+                                    <button id="btnSaveEmployeeSubmit" type="button" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                 </form>
             </div>
         </div>

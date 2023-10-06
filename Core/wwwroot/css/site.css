@@ -386,12 +386,13 @@ table.table td a {
             font-style: normal;
         }
 
-.pk-table-fixed-container table th {
-    font-size: 12.5px;
-}
-.pk-table-fixed-container table p {
-    font-size: 12px;
-}
+        .pk-table-fixed-container table th {
+            font-size: 12.5px;
+        }
+
+        .pk-table-fixed-container table p {
+            font-size: 12px;
+        }
 
 .pk-table-congested-container {
     margin-left: -37px;
@@ -404,7 +405,7 @@ table.table td a {
 }
 
 
-.pk-emp-tbl-container{
+.pk-emp-tbl-container {
     max-width: 90%
 }
 
@@ -413,7 +414,7 @@ table td {
     text-align: center
 }
 
-.table > tbody > tr > td{
+.table > tbody > tr > td {
     padding: 2px unset;
 }
 
@@ -478,10 +479,10 @@ div.dataTables_wrapper {
             margin-top: 2px;
         }
 
-
-.pk-btn-outline-primary:hover {
-    color: white;
-    border: none;
+.pk-btn-outline-primary {
+    color: darkslateblue;
+    border-color: darkslateblue;
+    cursor: pointer;
 }
 
 .pk-btn-icon-text {
@@ -500,8 +501,9 @@ div.dataTables_wrapper {
     outline: none !important;
     margin-left: 10px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.247);
-    cursor:pointer;
+    cursor: pointer;
 }
+
     .pk-card-header .btn span, .pk-card-header .btn i {
         pointer-events: none;
     }
@@ -517,10 +519,10 @@ div.dataTables_wrapper {
         margin-top: 2px;
     }
 
-    .pk-fs-15{
-        font-size:15px !important; 
-    }
+.pk-fs-15 {
+    font-size: 15px !important;
+}
 
-.replace-col-in-table{
+.replace-col-in-table {
     width: 120px;
 }
