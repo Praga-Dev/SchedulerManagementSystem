@@ -1,20 +1,38 @@
 ﻿$(document).ready(function () {
+	loadSpinner();
+
     $('[data-val-required]').each(function () {
         $(this).siblings('label').append('<span class="mandatory">*</span>');
-    })
+	})
+
+	getGradeDDList();
+	getLocationDDList();
+
+	resetEmployeeForm();
+	
+	hideSpinner();
 });
 
+function resetEmployeeForm() {
+	$('#formCreateEmployee').trigger("reset");
+	$('#formCreateEmployee').data('id', '');
+	$('#formCreateEmployee').data('isupdate', 'False');
+	$('#formCreateEmployee').find(':input,select').val('');
+	$('#formCreateEmployee').find('span.error').hide();
+	$('#createEmployeeTitle').text('Create Employee');
+	$('#createEmployeeModal').modal('show');
+}
 
 //jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
-$(".next").click(function () {
+function getNextFieldset(currBtnElement) {
 	debugger;
 	if (animating) return false;
 	animating = true;
-	current_fs = $(this).parents('fieldset');
+	current_fs = $(currBtnElement).parents('fieldset');
 	next_fs = current_fs.next();
 
 	//activate next step on progressbar using the index of next_fs
@@ -46,13 +64,13 @@ $(".next").click(function () {
 		//this comes from the custom easing plugin
 		easing: 'easeInOutBack'
 	});
-});
+};
 
-$(".previous").click(function () {
+function getPreviousFieldset(currBtnElement) {
 	if (animating) return false;
 	animating = true;
 
-	current_fs = $(this).parents('fieldset');
+	current_fs = $(currBtnElement).parents('fieldset');
 	previous_fs = current_fs.prev();
 
 	//de-activate current step on progressbar
@@ -81,7 +99,7 @@ $(".previous").click(function () {
 		//this comes from the custom easing plugin
 		easing: 'easeInOutBack'
 	});
-});
+};
 
 $(".submit").click(function () {
 	return false;
