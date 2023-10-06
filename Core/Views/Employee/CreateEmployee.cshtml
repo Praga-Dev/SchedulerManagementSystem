@@ -56,17 +56,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div id="gradeListDDContainer" data-val="@(Model?.GradeInfo?.Id != Guid.Empty ? Model?.GradeInfo?.Id : "")">
-                                    <div class="form-group">
-                                        <label class="form-label">
-                                            Grade
-                                            <span class="mandatory">*</span>
-                                        </label>
-                                        <select id="selectGrade" name="grade" class="form-control form-control-sm">
-                                            @* <option disabled selected value=""> -- select an option -- </option> *@
-                                            <partial name="~/Views/Employee/Create/_GradeList.cshtml" model="null" />
-                                        </select>
-                                        <span asp-validation-for="@Model.GradeInfo" class="text-danger"></span>
-                                    </div>
+                                    <partial name="~/Views/Employee/Create/_GradeList.cshtml" model="null" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -110,7 +100,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label asp-for="@Model.WorkHoursPerWeek" class="form-label"></label>
-                                    <input asp-for="@Model.WorkHoursPerWeek" autocomplete="off" class="form-control form-control-sm">
+                                    <input asp-for="@Model.WorkHoursPerWeek" autocomplete="off" min="0" class="form-control form-control-sm">
                                     <span asp-validation-for="@Model.WorkHoursPerWeek" class="text-danger"></span>
                                 </div>
                             </div>
@@ -164,12 +154,12 @@
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="text-center p-2 m-2">
-                            <button type="button" name="next" class="next btn pk-btn-outline-primary">Next</button>
+                            <button type="button" class="btn pk-btn-outline-primary"
+                                    onclick="getNextFieldset(this)">
+                                Next
+                            </button>
                         </div>
-
                     </fieldset>
                     <fieldset>
                         <div class="pk-form-header">
@@ -208,12 +198,18 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="text-end p-2 m-2 ">
-                                    <button type="button" name="previous" class="previous btn pk-btn-outline-primary">Previous</button>
+                                    <button type="button" class="btn pk-btn-outline-primary"
+                                            onclick="getPreviousFieldset(this)">
+                                        Previous
+                                    </button>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-start p-2 m-2">
-                                    <button type="button" name="next" class="next btn pk-btn-outline-primary">Next</button>
+                                    <button type="button" class="btn pk-btn-outline-primary"
+                                            onclick="getNextFieldset(this)">
+                                        Next
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +251,10 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="text-end p-2 m-2 ">
-                                    <button type="button" name="previous" class="previous btn pk-btn-outline-primary">Previous</button>
+                                    <button type="button" class="btn pk-btn-outline-primary"
+                                            onclick="getPreviousFieldset(this)">
+                                        Previous
+                                    </button>
                                 </div>
                             </div>
                             <div class="col-md-6">
