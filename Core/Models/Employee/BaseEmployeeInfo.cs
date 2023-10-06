@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using SchedulerManagementSystem.Models.Lookups;
 using System.ComponentModel.DataAnnotations;
 
@@ -7,20 +8,20 @@ namespace SchedulerManagementSystem.Models.Employee
 
     public class BaseEmployeeInfo
     {
-        [ScaffoldColumn(false)]
+        [ValidateNever]
         public Guid Id { get; set; }
 
-        [StringLength(20, MinimumLength = 3)]
         [Required(ErrorMessage = "First Name is required")]
+        [StringLength(20, MinimumLength = 3)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Display(Name = "Middle Initial")]
-        [StringLength(20, MinimumLength = 3)]
+        [StringLength(20, MinimumLength = 1)]
         public string MiddleName { get; set; }
 
+        [Required(ErrorMessage = "Last Name is required")]
         [StringLength(20, MinimumLength = 3)]
-        [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
