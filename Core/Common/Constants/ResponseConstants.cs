@@ -16,7 +16,8 @@
 
 
 
-        public const string INVALID_PARAM_GRADE_NAME = "Invalid Grade Name";
+        public const string INVALID_PARAM_NAME = "Invalid Name";
+        public const string INVALID_PARAM_Title_NAME = "Invalid Title Name";
         public const string ERROR_PAST_DATE_CANNOT_BE_CHANGED = "Error: Past dates are cannot be changed";
 
 

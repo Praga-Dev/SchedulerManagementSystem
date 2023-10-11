@@ -3,7 +3,6 @@
 });
 
 function getPrevious3MonthsOnCalendar() {
-    debugger;
     let curr = new Date($('#calendarSwitchBtnGroup').data('start-date'));
     if (curr && isValidDate(curr)) {
         loadSpinner();

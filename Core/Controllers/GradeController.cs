@@ -67,7 +67,7 @@ namespace SchedulerManagementSystem.Controllers
 
                 if (string.IsNullOrWhiteSpace(gradeInfo.Name))
                 {
-                    response.Message ??= ResponseConstants.INVALID_PARAM_GRADE_NAME;
+                    response.Message ??= ResponseConstants.INVALID_PARAM_NAME;
                     return StatusCode(StatusCodes.Status400BadRequest, response);
                 }
 
@@ -110,7 +110,7 @@ namespace SchedulerManagementSystem.Controllers
 
                 if (string.IsNullOrWhiteSpace(gradeInfo.Name))
                 {
-                    response.Message ??= ResponseConstants.INVALID_PARAM_GRADE_NAME;
+                    response.Message ??= ResponseConstants.INVALID_PARAM_NAME;
                     return StatusCode(StatusCodes.Status400BadRequest, response);
                 }
 

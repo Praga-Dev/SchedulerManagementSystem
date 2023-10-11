@@ -1,5 +1,7 @@
-﻿using SchedulerManagementSystem.Models.Employee;
+﻿using SchedulerManagementSystem.Common.CustomValidations.NoFutureDate;
+using SchedulerManagementSystem.Models.Employee;
 using SchedulerManagementSystem.Models.Lookups;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace SchedulerManagementSystem.Models
@@ -13,8 +15,9 @@ namespace SchedulerManagementSystem.Models
         [Required]
         public EmployeeRoleInfo EmployeeRoleInfo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Work Hours Per Week is required")]
         [Range(0, 50)]
+        [Display(Name = "Work Hours Per Week")]
         public int WorkHoursPerWeek { get; set; }
 
         [Required]
@@ -26,22 +29,28 @@ namespace SchedulerManagementSystem.Models
         [Required]
         public BaseEmployeeInfo DirectReportInfo { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Login ID is required")]
+        [Range(0, 50)]
+        [Display(Name = "Login ID")]
         public string LoginID { get; set; }
         
-        [Required]
         [DataType(DataType.Date)]
+        [Required(ErrorMessage ="IAD Start Date is required")]
+        [Display(Name = "IAD Start Date")]
+        [NoFutureDate(ErrorMessage = "IAD Start Date should not be future Date")] // TODO Check with Joshua
         public DateTime IAD_StartDate { get; set; }
 
         [Required]
         public HireTypeInfo HireTypeInfo { get; set; }
 
         // TODO create lookup class if needed
-        [Required]
+        [Required(ErrorMessage = "Timesheet Exempt is required")]
+        [Display(Name = "Timesheet Exempt")]
         public bool TimeSheetExempt { get; set; }
 
         // TODO create lookup class if needed
-        [Required]
+        [Required(ErrorMessage = "Allocation is required")]
+        [Display(Name = "Allocation")]
         public bool Allocation { get; set; }
 
 
@@ -66,18 +75,29 @@ namespace SchedulerManagementSystem.Models
 
         #region Employee Information AIG
 
-        
-        [Required]
+
+        [Required(ErrorMessage = "AIG Employee Number is required")]
+        [StringLength(15, MinimumLength =0, ErrorMessage = "AIG Employee Number length should be 5 to 15 characters")]
+        [Display(Name = "AIG Employee Number")]
         public string AIG_EmployeeNumber { get; set; }
         
-        [Required]
+        [Required(ErrorMessage = "Phone Number is required")]
+        [Phone(ErrorMessage ="Phone Number should be valid")]
+        [DisplayName("Phone Number")]
         public string PhoneNumber { get; set; }
-        
-        [Required]
+
+        [Required(ErrorMessage = "Email Address is required")]
+        [EmailAddress(ErrorMessage = "Email Address should be valid")]
+        [DisplayName("Email Address")]
         public string Email { get; set; }
-        
-        [Required]
+
+        [DataType(DataType.Date)]
+        [Required(ErrorMessage = "AIG Start Date is required")]
+        [Display(Name = "AIG Start Date")]
+        [NoFutureDate(ErrorMessage = "AIG Start Date should not be future Date")] // TODO Check with Joshua
         public DateTime AIG_StartDate { get; set; }
+        
+        [NoFutureDate(ErrorMessage = "AIG Termination Date should not be past Date")] // TODO Check with Joshua
         public DateTime AIG_TerminationDate { get; set; }
 
         public TerminationTypeInfo TerminationTypeInfo { get; set; }

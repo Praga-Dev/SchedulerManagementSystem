@@ -11,6 +11,12 @@
 	resetEmployeeForm();
 	
 	hideSpinner();
+
+	//$.validator.addMethod('no-future-date', function (value, element, params) {
+	//	return element.checked;
+	//});
+
+	//jQuery.validator.unobtrusive.adapters.addBool("no-future-date");
 });
 
 function resetEmployeeForm() {
@@ -29,7 +35,6 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 function getNextFieldset(currBtnElement) {
-	debugger;
 	if (animating) return false;
 	animating = true;
 	current_fs = $(currBtnElement).parents('fieldset');

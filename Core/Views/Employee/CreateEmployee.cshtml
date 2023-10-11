@@ -18,8 +18,8 @@
     <div id="EmployeeCreateFormContainer">
         <div class="row">
             <div class="col-sm-12">
-                <form id="formCreateEmployee" method="post" autocomplete="off"
-                      asp-controller="Employee" asp-action="CreateEmployeeInfo">
+                <form id="formCreateEmployee" autocomplete="off">
+                    @* method="post" asp-controller="Employee" asp-action="CreateEmployeeInfo"> *@
                     <ul id="progressbar" class="pk-form-header">
                         <li class="active">Employee Information IAD</li>
                         <li>Application Security Information</li>
@@ -159,6 +159,12 @@
                                     onclick="getNextFieldset(this)">
                                 Next
                             </button>
+                            <div class="text-start p-2 m-2">
+                                <button id="btnSaveEmployeeSubmit" type="submit" onclick="saveEmployee()"
+                                        class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
                         </div>
                     </fieldset>
                     <fieldset>
@@ -259,7 +265,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="text-start p-2 m-2">
-                                    <button id="btnSaveEmployeeSubmit" type="button" class="btn btn-primary">Submit</button>
+                                    <button id="btnSaveEmployeeSubmit" type="submit" onclick="saveEmployee()"
+                                        class="btn btn-primary">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -271,4 +278,5 @@
 
     <partial name="~/Views/Shared/_ValidationScriptsPartial.cshtml" />
     <script src="~/js/employee/create-employee.js" asp-append-version="true"></script>
+    <script src="~/js/employee/create-employee-validation.js" asp-append-version="true"></script>
 }
