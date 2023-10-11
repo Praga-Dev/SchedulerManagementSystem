@@ -1,0 +1,38 @@
+﻿@model Response<List<AccessLevelTypeInfo>>
+
+@{
+    ViewData["Title"] = "AccessLevelType";
+}
+
+<div class="pk-table-container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>AccessLevelType</h2>
+            </div>
+            <div class="col-sm-6">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary-outline" onclick="onCreateAccessLevelType()">
+                    <span>Create &nbsp;</span><i class="material-icons">&#xE147;</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="accessLevelTypeListContainer">
+        @if (Model != null && Model.IsSuccess && Model.Data != null && Model.Data.Any())
+        {
+            <partial name="_AccessLevelTypeList.cshtml" />
+        }
+        else
+        {
+            <p>
+                NO RECORDS FOUND
+            </p>
+        }
+    </div>
+</div>
+<div id="createAccessLevelTypeFormContainer">
+    <partial name="_CreateAccessLevelType.cshtml" model="new AccessLevelTypeInfo()" />
+</div>
+
+<script src="~/js/lookups/access-level-type/access-level-type.js" asp-append-version="true"></script>
