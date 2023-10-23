@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Lookups\" />
+    <Folder Include="Views\Lookups\AccessLevelType\" />
+    <Folder Include="Views\Lookups\EmployeeRole\" />
   </ItemGroup>
 
 </Project>
