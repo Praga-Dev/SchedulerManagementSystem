@@ -5,7 +5,7 @@ using SchedulerManagementSystem.Common.Models;
 using SchedulerManagementSystem.Common.Utils;
 using SchedulerManagementSystem.DataAccess.IRepositories;
 using SchedulerManagementSystem.DataModels.Employee;
-using SchedulerManagementSystem.Models;
+using SchedulerManagementSystem.Models.Employee;
 
 namespace SchedulerManagementSystem.Controllers
 {

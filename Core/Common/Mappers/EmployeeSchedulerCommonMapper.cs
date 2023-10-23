@@ -1,7 +1,7 @@
 ﻿using SchedulerManagementSystem.DataModels;
-using SchedulerManagementSystem.Models;
 using SchedulerManagementSystem.DataModels.Scheduler;
 using SchedulerManagementSystem.Models.Scheduler;
+using SchedulerManagementSystem.Models.Employee;
 
 namespace SchedulerManagementSystem.Common.Mappers
 {

@@ -1,5 +1,5 @@
 ﻿using SchedulerManagementSystem.DataModels.Employee;
-using SchedulerManagementSystem.Models;
+using SchedulerManagementSystem.Models.Employee;
 using SchedulerManagementSystem.Models.Lookups;
 using System.Collections.Generic;
 using System.Diagnostics;

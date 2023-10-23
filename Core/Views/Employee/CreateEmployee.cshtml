@@ -159,12 +159,12 @@
                                     onclick="getNextFieldset(this)">
                                 Next
                             </button>
-                            <div class="text-start p-2 m-2">
+                            @* <div class="text-start p-2 m-2">
                                 <button id="btnSaveEmployeeSubmit" type="submit" onclick="saveEmployee()"
                                         class="btn btn-primary">
                                     Submit
                                 </button>
-                            </div>
+                            </div> *@
                         </div>
                     </fieldset>
                     <fieldset>
@@ -224,6 +224,12 @@
                         <div class="pk-form-header">
                             <h2 class="fs-title">Employee Information AIG</h2>
                             <h3 class="fs-subtitle">Please provide Employee Application Security Information</h3>
+                            <div class="text-end p-2 m-2">
+                                <button id="btnSaveEmployeeSubmit" type="submit" onclick="saveEmployee()"
+                                        class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
@@ -254,7 +260,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        @*<div class="row">
                             <div class="col-md-6">
                                 <div class="text-end p-2 m-2 ">
                                     <button type="button" class="btn pk-btn-outline-primary"
@@ -263,12 +269,18 @@
                                     </button>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                             <div class="col-md-6">
                                 <div class="text-start p-2 m-2">
                                     <button id="btnSaveEmployeeSubmit" type="submit" onclick="saveEmployee()"
                                         class="btn btn-primary">Submit</button>
                                 </div>
-                            </div>
+                            </div> 
+                        </div> *@
+                        <div class="text-center p-2 m-2">
+                            <button type="button" class="btn pk-btn-outline-primary"
+                                    onclick="getPreviousFieldset(this)">
+                                Previous
+                            </button>
                         </div>
                     </fieldset>
                 </form>
