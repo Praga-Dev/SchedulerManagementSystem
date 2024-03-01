@@ -1,0 +1,38 @@
+﻿@model Response<List<ATS_AdminLevelTypeInfo>>
+
+@{
+    ViewData["Title"] = "ATS_AdminLevelType";
+}
+
+<div class="pk-table-container">
+    <div class="table-title">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>ATS_AdminLevelType</h2>
+            </div>
+            <div class="col-sm-6">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary-outline" onclick="onCreateATS_AdminLevelType()">
+                    <span>Create &nbsp;</span><i class="material-icons">&#xE147;</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="aTS_AdminLevelTypeListContainer">
+        @if (Model != null && Model.IsSuccess && Model.Data != null && Model.Data.Any())
+        {
+            <partial name="_ATS_AdminLevelTypeList.cshtml" />
+        }
+        else
+        {
+            <p>
+                NO RECORDS FOUND
+            </p>
+        }
+    </div>
+</div>
+<div id="createATS_AdminLevelTypeFormContainer">
+    <partial name="_CreateATS_AdminLevelType.cshtml" model="new ATS_AdminLevelTypeInfo()" />
+</div>
+
+<script src="~/js/lookups/ats-admin-level-type/ats-admin-level-type.js" asp-append-version="true"></script>
